@@ -1,4 +1,5 @@
-(ns play-clj.entities
+(ns kludge.entities
+  (:require [clj-uuid :as uuid])
   (:import [com.badlogic.gdx Gdx Graphics]
            [com.badlogic.gdx.graphics Camera Color GL20]
            [com.badlogic.gdx.graphics.g2d Batch NinePatch ParticleEffect Sprite
@@ -159,3 +160,29 @@
   (draw! [{:keys [entities] :as entity} screen batch]
     (doseq [e entities]
       (draw! (merge e (apply dissoc entity (keys e))) screen batch))))
+
+;code for working with entities map
+
+
+(defn entity-uid
+  "Get an uuid suitable for use as the reference to an entity"
+  []
+  (uuid/v1))
+
+(defn assoc-entity [entities entity key val]
+  (assoc-in entities [entity key] val))
+
+(defn update-entity [entities entity key f & args]
+  (apply update-in [entity key] f args))
+
+(defn get-entity [entities entity key]
+  (get-in entities [entity key]))
+
+
+(defmacro doto-entity
+  "Create a new entity, run some code on it. Threads entities map through forms with ->"
+  [entities entsym & forms]
+  `(let [~entsym (entity-uid)]
+     (-> ~entities
+         (assoc ~entsym {})
+         ~@forms)))

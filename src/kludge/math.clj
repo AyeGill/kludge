@@ -1,5 +1,5 @@
-(ns play-clj.math
-  (:require [play-clj.utils :as u])
+(ns kludge.math
+  (:require [kludge.utils :as u])
   (:import [com.badlogic.gdx.math Bezier Bresenham2 BSpline CatmullRomSpline
             Circle ConvexHull DelaunayTriangulator EarClippingTriangulator
             Ellipse FloatCounter Frustum GridPoint2 GridPoint3 Matrix3 Matrix4

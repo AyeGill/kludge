@@ -1,6 +1,6 @@
-(ns play-clj.g3d
-  (:require [play-clj.entities]
-            [play-clj.utils :as u])
+(ns kludge.g3d
+  (:require [kludge.entities]
+            [kludge.utils :as u])
   (:import [com.badlogic.gdx.graphics.g3d Environment Material Model ModelBatch
             ModelInstance]
            [com.badlogic.gdx.graphics.g3d.attributes BlendingAttribute

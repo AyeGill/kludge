@@ -1,4 +1,4 @@
-(in-ns 'play-clj.core)
+(in-ns 'kludge.core)
 
 (defmacro pixmap-format
   "Returns a static field from [Pixmap.Format](http://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/graphics/Pixmap.Format.html).

@@ -1,7 +1,7 @@
-(ns play-clj.g2d-physics
-  (:require [play-clj.core :as c]
-            [play-clj.math :as m]
-            [play-clj.utils :as u])
+(ns kludge.g2d-physics
+  (:require [kludge.core :as c]
+            [kludge.math :as m]
+            [kludge.utils :as u])
   (:import [com.badlogic.gdx.math MathUtils Vector2]
            [com.badlogic.gdx.physics.box2d Body BodyDef ChainShape CircleShape
             Contact ContactListener EdgeShape Fixture FixtureDef Joint JointDef

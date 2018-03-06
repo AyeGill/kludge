@@ -1,8 +1,8 @@
-(ns play-clj.core
+(ns kludge.core
   (:require [clojure.set]
-            [play-clj.entities :as e]
-            [play-clj.math :as m]
-            [play-clj.utils :as u])
+            [kludge.entities :as e]
+            [kludge.math :as m]
+            [kludge.utils :as u])
   (:import [com.badlogic.gdx Application Audio Files Game Gdx Graphics Input
             InputMultiplexer InputProcessor Net Preferences Screen]
            [com.badlogic.gdx.audio Sound Music]
@@ -43,13 +43,12 @@
 (load "core_listeners")
 (load "core_utils")
 
+;Legacy from play-clj. Not really necessary with maps.
+;Could also have assert here to check that things are records.
 (defn ^:private normalize
   [entities]
-  (some->> entities
-           list
-           flatten
-           (remove nil?)
-           vec))
+  (apply dissoc entities
+    (for [[k v] entities :when (nil? v)] k))
 
 (defn ^:private wrapper
   [screen-atom screen-fn]

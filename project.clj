@@ -6,6 +6,7 @@
   :dependencies [[com.badlogicgames.gdx/gdx "1.9.3"]
                  [com.badlogicgames.gdx/gdx-box2d "1.9.3"]
                  [com.badlogicgames.gdx/gdx-bullet "1.9.3"]
+                 [danlentz/clj-uuid "0.1.7"]
                  [org.clojure/clojure "1.7.0"]]
   :repositories [["sonatype"
                   "https://oss.sonatype.org/content/repositories/releases/"]]

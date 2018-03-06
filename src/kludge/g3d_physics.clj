@@ -1,7 +1,7 @@
-(ns play-clj.g3d-physics
-  (:require [play-clj.core :as c]
-            [play-clj.math :as m]
-            [play-clj.utils :as u])
+(ns kludge.g3d-physics
+  (:require [kludge.core :as c]
+            [kludge.math :as m]
+            [kludge.utils :as u])
   (:import [com.badlogic.gdx.math Matrix4]
            [com.badlogic.gdx.physics.bullet Bullet]
            [com.badlogic.gdx.physics.bullet.collision btBoxShape

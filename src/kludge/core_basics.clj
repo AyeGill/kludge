@@ -1,4 +1,4 @@
-(in-ns 'play-clj.core)
+(in-ns 'klude.core)
 
 ; graphics
 

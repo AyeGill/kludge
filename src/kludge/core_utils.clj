@@ -1,4 +1,4 @@
-(in-ns 'play-clj.core)
+(in-ns 'kludge.core)
 
 (defn find-first
   "Returns the first entity in `entities` for which `match-fn` returns true.

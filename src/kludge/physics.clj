@@ -1,7 +1,7 @@
-(ns play-clj.physics
-  (:require [play-clj.g2d-physics :as p2d]
-            [play-clj.g3d-physics :as p3d]
-            [play-clj.utils :as u]))
+(ns kludge.physics
+  (:require [kludge.g2d-physics :as p2d]
+            [kludge.g3d-physics :as p3d]
+            [kludge.utils :as u]))
 
 ; this namespace is for internal use only. you should use the g2d-physics and
 ; g3d-physics namespaces directly, instead.

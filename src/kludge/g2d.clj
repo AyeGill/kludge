@@ -1,6 +1,6 @@
-(ns play-clj.g2d
-  (:require [play-clj.entities]
-            [play-clj.utils :as u])
+(ns kludge.g2d
+  (:require [kludge.entities]
+            [kludge.utils :as u])
   (:import [com.badlogic.gdx Files Gdx]
            [com.badlogic.gdx.files FileHandle]
            [com.badlogic.gdx.graphics Pixmap Texture]

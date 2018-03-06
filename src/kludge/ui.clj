@@ -1,7 +1,7 @@
-(ns play-clj.ui
-  (:require [play-clj.entities]
-            [play-clj.g2d :as g2d]
-            [play-clj.utils :as u])
+(ns kludge.ui
+  (:require [kludge.entities]
+            [kludge.g2d :as g2d]
+            [kludge.utils :as u])
   (:import [com.badlogic.gdx Files Gdx]
            [com.badlogic.gdx.graphics Color Texture]
            [com.badlogic.gdx.graphics.g2d TextureRegion]

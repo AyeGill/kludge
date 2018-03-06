@@ -1,4 +1,4 @@
-(defproject play-clj-doclet "0.0.1-SNAPSHOT"
+(defproject kludge-doclet "0.0.1-SNAPSHOT"
   :description "FIXME: write description"
   :dependencies [[hiccup "1.0.5"]
                  [marginalia "0.7.1"]

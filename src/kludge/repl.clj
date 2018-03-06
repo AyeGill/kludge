@@ -1,5 +1,5 @@
-(ns play-clj.repl
-  (:require [play-clj.core :refer :all]))
+(ns kludge.repl
+  (:require [kludge.core :refer :all]))
 
 (defn s
   "Returns the screen map in `screen-object`.

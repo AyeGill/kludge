@@ -1,4 +1,4 @@
-(ns play-clj.utils
+(ns kludge.utils
   (:require [clojure.string :as s])
   (:import [com.badlogic.gdx.assets AssetManager]
            [com.badlogic.gdx.utils Array ArrayMap]))
@@ -33,7 +33,7 @@
 
 (defn track-timers!
   []
-  (intern 'play-clj.utils '*timers* (atom #{})))
+  (intern 'kludge.utils '*timers* (atom #{})))
 
 (defn stop-timers!
   []

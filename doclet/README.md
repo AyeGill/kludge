@@ -1,4 +1,4 @@
-This doclet generates the play-clj doc site.
+This doclet generates the kludeg doc site.
 
 ## Directions
 
