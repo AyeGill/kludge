@@ -179,7 +179,7 @@
   (some #(try
            (when (= body (:object (u/get-obj % :body))) %)
            (catch Exception _))
-        entities))
+        (vals entities)))
 
 (defn first-entity
   "Returns the first entity in a contact. May only be used in contact functions
@@ -290,7 +290,7 @@ such as :on-begin-contact."
   "play_clj.g3d_physics.World3D"
   [screen & [entities]]
   ; initialize bodies if necessary
-  (doseq [e entities]
+  (doseq [e (vals entities)]
     (let [object (u/get-obj e :object)
           body (u/get-obj e :body)]
       (when (and object (instance? btRigidBody (:object body)))
@@ -301,9 +301,9 @@ such as :on-begin-contact."
                    (m/matrix-4! (. object transform) :set world-t)))
                (rigid-body! e :set-motion-state))))))
   ; remove bodies that no longer exist
-  (when entities
+  (when (vals entities)
     (doseq [^btCollisionObject body (get-bodies screen)]
-      (when-not (some #(= body (-> % :body :object)) entities)
+      (when-not (some #(= body (-> % :body :object)) (vals entities))
         (cond
           (instance? btRigidBody body)
           (bullet-3d! screen :remove-rigid-body body)
@@ -320,7 +320,7 @@ such as :on-begin-contact."
    (bullet-3d! screen :step-simulation delta-time max-sub-steps time-step))
   ([screen entities]
    (step! screen)
-   (map (fn [e]
+   (u/mmap (fn [e]
           (if (:body e)
             (assoc e
                    :x (body-x e)

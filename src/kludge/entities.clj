@@ -172,17 +172,15 @@
 (defn assoc-entity [entities entity key val]
   (assoc-in entities [entity key] val))
 
-(defn update-entity [entities entity key f & args]
-  (apply update-in [entity key] f args))
+(defmacro update-entity [entities entity key f & args]
+  `(update-in ~entities [~entity ~key] ~f ~@args))
 
 (defn get-entity [entities entity key]
   (get-in entities [entity key]))
 
-
-(defmacro doto-entity
-  "Create a new entity, run some code on it. Threads entities map through forms with ->"
-  [entities entsym & forms]
-  `(let [~entsym (entity-uid)]
-     (-> ~entities
-         (assoc ~entsym {})
-         ~@forms)))
+(defn create-entity
+  "Creates a new entity. Note that the uid is not returned"
+  ([entities uid record]
+             (assoc entities uid record))
+  ([entities record]
+             (create-entity entities (entity-uid) record)))

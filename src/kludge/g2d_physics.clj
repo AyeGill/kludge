@@ -105,12 +105,14 @@
   [entity angle]
   (body-position! entity (body-x entity) (body-y entity) angle))
 
+
+;Iterating through entire entities vector? Not good
 (defn ^:private find-body
   [body entities]
   (some #(try
            (when (= body (u/get-obj % :body)) %)
            (catch Exception _))
-        entities))
+        (vals entities)))
 
 (defn first-entity
   "Returns the first entity in a contact. May only be used in contact functions
@@ -248,13 +250,13 @@ such as :on-begin-contact."
       ; remove bodies that no longer exist
       (.getBodies world arr)
       (doseq [body arr]
-        (when-not (some #(= body (:body %)) entities)
+        (when-not (some #(= body (:body %)) (vals entities))
           (.destroyBody world body)))
       ; remove joints whose bodies no longer exist
       (.getJoints world arr)
       (doseq [^Joint joint arr]
-        (when (and (not (some #(= (.getBodyA joint) (:body %)) entities))
-                   (not (some #(= (.getBodyB joint) (:body %)) entities)))
+        (when (and (not (some #(= (.getBodyA joint) (:body %)) (vals entities)))
+                   (not (some #(= (.getBodyB joint) (:body %)) (vals entities))))
           (.destroyJoint world joint))))))
 
 (defn step!
@@ -266,7 +268,7 @@ such as :on-begin-contact."
    (.step world time-step velocity-iterations position-iterations))
   ([screen entities]
    (step! screen)
-   (map (fn [e]
+   (u/mmap (fn [e]
           (if (:body e)
             (assoc e
                    :x (body-x e)

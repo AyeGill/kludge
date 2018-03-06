@@ -15,6 +15,19 @@
   [& body]
   `(app! :post-runnable (fn [] ~@body)))
 
+(defn mmap
+  "Map for maps"
+  [f m]
+  (into {} (for [[k v] m] [k (f v)])))
+
+(defn mfilter
+  "Filter for maps (filters by value)"
+  [f m]
+  (apply dissoc m
+      (for [[k v] m :when (not (f v))] k)))
+
+;Not clear how we should handle bundles. Maybe should just use list of uuids?
+;For now keep as-is
 (defn bundle
   "Returns an entity containing other entities. This is a useful way to keep
 related entities together. They will be drawn in the order they appear in the

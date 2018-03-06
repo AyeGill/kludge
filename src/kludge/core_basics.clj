@@ -1,4 +1,4 @@
-(in-ns 'klude.core)
+(in-ns 'kludge.core)
 
 ; graphics
 

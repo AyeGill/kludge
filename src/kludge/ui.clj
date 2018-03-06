@@ -14,7 +14,7 @@
             ChangeListener ClickListener DragListener FocusListener
             NinePatchDrawable SpriteDrawable TextureRegionDrawable
             TiledDrawable]
-           [play_clj.entities ActorEntity]))
+           [kludge.entities ActorEntity]))
 
 (defmacro drawable
   "Returns a subclass of [BaseDrawable](http://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/scenes/scene2d/utils/BaseDrawable.html).

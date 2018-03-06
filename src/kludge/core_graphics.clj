@@ -482,7 +482,7 @@ with the tiled map file at `path` and `unit` scale.
   [{:keys [^BatchTiledMapRenderer renderer] :as screen} entities]
   (let [^Batch batch (.getBatch renderer)]
     (.begin batch)
-    (doseq [entity entities]
+    (doseq [entity (vals entities)]
       (e/draw! entity screen batch))
     (.end batch))
   entities)
@@ -491,7 +491,7 @@ with the tiled map file at `path` and `unit` scale.
   [{:keys [^Stage renderer] :as screen} entities]
   (let [^Batch batch (.getBatch renderer)]
     (.begin batch)
-    (doseq [{:keys [additive? opacity] :as entity} entities]
+    (doseq [{:keys [additive? opacity] :as entity} (vals entities)]
       (when additive?
         (.setBlendFunction ^Batch batch (gl :gl-src-alpha) (gl :gl-one)))
       (.setColor batch (color 1 1 1 (or opacity 1.0)))
@@ -505,7 +505,7 @@ with the tiled map file at `path` and `unit` scale.
 (defmethod draw! ModelBatch
   [{:keys [^ModelBatch renderer ^Camera camera] :as screen} entities]
   (.begin renderer camera)
-  (doseq [entity entities]
+  (doseq [entity (vals entities)]
     (e/draw! entity screen nil))
   (.end renderer)
   entities)
@@ -620,7 +620,7 @@ to overlap correctly with the entities.
    (let [^Batch batch (.getBatch renderer)]
      (.begin batch)
      (doseq [entity (->> (map #(get-in screen [:layers %]) layer-names)
-                         (apply concat entities)
+                         (apply concat (vals entities))
                          sort-fn)]
        (if-let [layer (:layer entity)]
          (.renderTileLayer renderer layer)

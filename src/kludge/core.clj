@@ -35,7 +35,7 @@
            [com.badlogic.gdx.scenes.scene2d.utils ActorGestureListener
             ChangeListener ClickListener DragListener FocusListener]
            [com.badlogic.gdx.utils ScreenUtils Timer$Task]
-           [play_clj.entities BundleEntity ShapeEntity]))
+           [kludge.entities BundleEntity ShapeEntity]))
 
 (load "core_basics")
 (load "core_cameras")
@@ -48,7 +48,7 @@
 (defn ^:private normalize
   [entities]
   (apply dissoc entities
-    (for [[k v] entities :when (nil? v)] k))
+    (for [[k v] entities :when (nil? v)] k)))
 
 (defn ^:private wrapper
   [screen-atom screen-fn]
@@ -486,7 +486,7 @@ keywords and functions in pairs."
                             (intern *ns* map-sym# (atom {}))))
          entities-sym# (symbol (str '~n "-entities"))
          entities# (deref (or (resolve entities-sym#)
-                              (intern *ns* entities-sym# (atom []))))]
+                              (intern *ns* entities-sym# (atom {}))))]
      (def ~n (defscreen* screen# entities# fn-syms#))))
 
 (defn defgame*
@@ -547,7 +547,7 @@ handle errors and perform other custom actions each time they run.
                                (.printStackTrace e)
                                (set-screen! my-game blank-screen)))))"
   [wrapper-fn]
-  (intern 'play-clj.core 'wrapper wrapper-fn))
+  (intern 'kludge.core 'wrapper wrapper-fn))
 
 (defn update!
   "Runs the equivalent of `(swap! screen-atom assoc ...)`, where `screen-atom`

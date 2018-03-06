@@ -193,7 +193,7 @@ in the `screen`."
        (.update (game :width) (game :height) true))))
   ([{:keys [^Stage renderer ui-listeners]} entities]
    (let [bundle? #(instance? BundleEntity %)
-         current (->> entities
+         current (->> (vals entities)
                       (mapcat #(tree-seq bundle? :entities %))
                       (map :object)
                       (filter #(instance? Actor %))

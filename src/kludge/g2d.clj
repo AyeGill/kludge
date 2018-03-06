@@ -6,7 +6,7 @@
            [com.badlogic.gdx.graphics Pixmap Texture]
            [com.badlogic.gdx.graphics.g2d Animation BitmapFont NinePatch Sprite
             ParticleEffect TextureAtlas TextureRegion]
-           [play_clj.entities TextureEntity NinePatchEntity SpriteEntity
+           [kludge.entities TextureEntity NinePatchEntity SpriteEntity
             ParticleEffectEntity]))
 
 (defn bitmap-font*
