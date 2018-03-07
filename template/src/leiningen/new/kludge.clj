@@ -1,12 +1,12 @@
-(ns leiningen.new.play-clj
+(ns leiningen.new.kludge
   (:require [clojure.java.io :as io]
             [leiningen.core.main :as main]
             [leiningen.droid.new :as droid-new]
             [leiningen.new.templates :as t]))
 
-(defn play-clj
+(defn kludge
   [name & [package-name]]
-  (let [render (t/renderer "play-clj")
+  (let [render (t/renderer "kludge")
         lein-droid-render (droid-new/renderer "templates")
         desktop-class-name "desktop-launcher"
         android-class-name "AndroidLauncher"
