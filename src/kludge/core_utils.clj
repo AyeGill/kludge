@@ -15,11 +15,6 @@
   [& body]
   `(app! :post-runnable (fn [] ~@body)))
 
-(defn mmap
-  "Map for maps"
-  [f m]
-  (into {} (for [[k v] m] [k (f v)])))
-
 (defn mfilter
   "Filter for maps (filters by value)"
   [f m]

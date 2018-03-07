@@ -9,6 +9,11 @@
   [k]
   (throw (Exception. (str "The keyword " k " is not found."))))
 
+(defn mmap
+  "Map for maps"
+  [f m]
+    (into {} (for [[k v] m] [k (f v)])))
+
 (defn get-obj
   [obj k]
   (if (map? obj)
