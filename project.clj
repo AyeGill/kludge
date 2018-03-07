@@ -1,5 +1,6 @@
 (defproject kludge "0.0.1-SNAPSHOT"
   :description "A libGDX wrapper for easy cross-platform game development"
+  :url "https://github.com/AyeGill/kludge"
   :license {:name "Public Domain"
             :url "http://unlicense.org/UNLICENSE"}
   :dependencies [[com.badlogicgames.gdx/gdx "1.9.3"]

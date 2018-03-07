@@ -7,7 +7,7 @@
                  [com.badlogicgames.gdx/gdx-bullet "1.9.3"]
                  [neko/neko "3.2.0"]
                  [org.clojure-android/clojure "1.7.0-r4" :use-resources true]
-                 [kludge "0.0.1"]]
+                 [kludge "0.0.1-SNAPSHOT"]]
   :profiles {:dev {:dependencies [[org.clojure-android/tools.nrepl "0.2.6-lollipop"]]
                    :android {:aot :all-with-unused}}
              :release {:android
