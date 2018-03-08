@@ -6,4 +6,4 @@ It doesn't really make sense to have pass/fail unit tests in the usual sense, so
 
 I've added the .so files necessary for this to run in the /resources file. These are only necessary for tests.
 
-No changes have been tested on android, although they *should* work.
+No changes have been tested on android, although it *should* work.
