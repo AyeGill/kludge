@@ -9,7 +9,7 @@
                  [com.badlogicgames.gdx/gdx-backend-lwjgl "1.9.3"]
                  [danlentz/clj-uuid "0.1.7"]
                  [com.badlogicgames.gdx/gdx-platform "1.9.3" :classifier "natives-desktop"]
-                 [org.clojars.oakes/clojure "1.6.0"]]
+                 [org.clojure/clojure "1.9.0"]]
   :repl-options {:init-ns kludge.core}
   :repositories [["sonatype"
                   "https://oss.sonatype.org/content/repositories/releases/"]]
