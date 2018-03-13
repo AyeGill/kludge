@@ -186,6 +186,9 @@
   ([entities record]
     (create-entity entities (entity-uid) record)))
 
+(defn create-entities [entities records]
+  (reduce create-entity entities records))
+
 (defn add-component-manager! [screen]
   (update! screen :component-manager {})) ;Should map component->uid set
 
