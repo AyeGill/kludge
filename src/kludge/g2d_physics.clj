@@ -107,12 +107,13 @@
 
 
 ;Iterating through entire entities vector? Not good
+;Has been modifies to return uid, rather than record
 (defn ^:private find-body
   [body entities]
   (some #(try
-           (when (= body (u/get-obj % :body)) %)
+           (when (= body (u/get-obj (val %) :body)) (key %))
            (catch Exception _))
-        (vals entities)))
+        entities))
 
 (defn first-entity
   "Returns the first entity in a contact. May only be used in contact functions

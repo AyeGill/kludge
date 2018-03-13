@@ -177,9 +177,9 @@
 (defn ^:private find-body
   [body entities]
   (some #(try
-           (when (= body (:object (u/get-obj % :body))) %)
+           (when (= body (:object (u/get-obj (val %) :body))) (key %))
            (catch Exception _))
-        (vals entities)))
+        entities))
 
 (defn first-entity
   "Returns the first entity in a contact. May only be used in contact functions
