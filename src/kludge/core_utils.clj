@@ -218,9 +218,9 @@ asset manager will then allow you to dispose them all at once.
 
     ; create an asset manager
     (defonce manager (asset-manager))
-    ; set it to be used by play-clj
+    ; set it to be used by kludge
     (set-asset-manager! manager)
     ; dispose all assets at once
     (asset-manager! manager :clear)"
   [am]
-  (intern 'play-clj.utils '*asset-manager* am))
+  (intern 'kludge.utils '*asset-manager* am))
