@@ -10,7 +10,7 @@
   (throw (Exception. (str "The keyword " k " is not found."))))
 
 (defn mmap
-  "Map for maps"
+  "Map for maps. Maps over values"
   [f m]
     (into {} (for [[k v] m] [k (f v)])))
 
