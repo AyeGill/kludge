@@ -165,11 +165,16 @@
 ;code for working with entities map
 
 
-(defn entity-uid
-  "Get an uuid suitable for use as the reference to an entity"
-  []
-  (uuid/v1))
+(def +namespace-ent+ (uuid/v1))
 
+
+(defn entity-uid
+  "Get an uuid suitable for use as the reference to an entity.
+  Can pass an argument to easily generate the same UID multiple times,
+  although this is effectively creating global state which is bad form"
+  ([]
+    (uuid/v1))
+  ([object] (uuid/v3 +namespace-ent+ object)))
 (defn assoc-entity [entities entity key val]
   (assoc-in entities [entity key] val))
 
