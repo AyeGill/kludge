@@ -15,6 +15,7 @@
   [& body]
   `(app! :post-runnable (fn [] ~@body)))
 
+;This should at least be in the same namespace as mmap
 (defn mfilter
   "Filter for maps (filters by value)"
   [f m]
