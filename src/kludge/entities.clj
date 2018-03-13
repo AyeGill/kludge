@@ -189,6 +189,9 @@
 (defn create-entities [entities records]
   (reduce create-entity entities records))
 
+(comment
+  "Component system probably shouldn't be in this namespace (maybe not entity record stuff either).
+   Commented out for now"
 (defn add-component-manager! [screen]
   (update! screen :component-manager {})) ;Should map component->uid set
 
@@ -222,3 +225,4 @@
                    (if (check-stuff explosive physics ...)))"
   [screen entities keys arglist & forms]
   `(update-with-components ~screen ~entities ~keys (fn ~arglist ~@forms)))
+)
