@@ -1,5 +1,6 @@
 (ns kludge.repl
-  (:require [kludge.core :refer :all]))
+  (:require [kludge.core :refer :all]
+            [kludge.utils :as u]))
 
 (defn s
   "Returns the screen map in `screen-object`.
@@ -34,5 +35,5 @@ function. Returns the entities that were changed.
     (e! :player? main-screen :health 10)"
   [filter-fn screen-object & args]
   (swap! (:entities screen-object)
-         (partial mmap (fn [e] (if (filter-fn e) (apply assoc e args) e))))
+         (partial u/mmap (fn [e] (if (filter-fn e) (apply assoc e args) e))))
   (e filter-fn screen-object))

@@ -15,11 +15,7 @@
   [& body]
   `(app! :post-runnable (fn [] ~@body)))
 
-(defn mmap
-  "Map for maps"
-  [f m]
-  (into {} (for [[k v] m] [k (f v)])))
-
+;This should at least be in the same namespace as mmap
 (defn mfilter
   "Filter for maps (filters by value)"
   [f m]
@@ -222,9 +218,9 @@ asset manager will then allow you to dispose them all at once.
 
     ; create an asset manager
     (defonce manager (asset-manager))
-    ; set it to be used by play-clj
+    ; set it to be used by kludge
     (set-asset-manager! manager)
     ; dispose all assets at once
     (asset-manager! manager :clear)"
   [am]
-  (intern 'play-clj.utils '*asset-manager* am))
+  (intern 'kludge.utils '*asset-manager* am))

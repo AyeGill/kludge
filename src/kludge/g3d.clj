@@ -9,7 +9,7 @@
            [com.badlogic.gdx.graphics.g3d.model.data ModelData]
            [com.badlogic.gdx.graphics.g3d.utils AnimationController
             ModelBuilder]
-           [play_clj.entities ModelEntity]))
+           [kludge.entities ModelEntity]))
 
 ; animation-controller
 

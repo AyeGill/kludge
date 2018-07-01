@@ -278,7 +278,7 @@ via the screen map.
         (println (:distance screen)) ; the end distance between fingers
         entities))
 
-    ; 2D physics contact (for play-clj.g2d-physics)
+    ; 2D physics contact (for kludge.g2d-physics)
     ; Tip: use first-entity and second-entity to get the entities that are contacting
     (defscreen my-screen
       ; two bodies began to touch
@@ -304,7 +304,7 @@ via the screen map.
         (println (:old-manifold screen)) ; the Manifold - http://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/physics/box2d/Manifold.html
         entities))
 
-    ; 3D physics contact (for play-clj.g3d-physics)
+    ; 3D physics contact (for kludge.g3d-physics)
     ; Tip: use first-entity and second-entity to get the entities that are contacting
     (defscreen my-screen
       ; two bodies began to touch
@@ -320,7 +320,7 @@ via the screen map.
         (println (:second-body screen)) ; the second btCollisionObject - http://bulletphysics.org/Bullet/BulletFull/classbtCollisionObject.html
         entities))
 
-    ; ui input functions (for play-clj.ui)
+    ; ui input functions (for kludge.ui)
     (defscreen my-screen
       ; the ui entity was clicked or changed
       :on-ui-changed
@@ -373,7 +373,7 @@ via the screen map.
         (println (:button screen)) ; the mouse button that was released (see button-code)
         entities))
 
-    ; ui drag functions (for play-clj.ui)
+    ; ui drag functions (for kludge.ui)
     (defscreen my-screen
       :on-ui-drag
       (fn [screen entities]
@@ -397,7 +397,7 @@ via the screen map.
         (println (:pointer screen)) ; the pointer for the event
         entities))
 
-    ; ui focus functions (for play-clj.ui)
+    ; ui focus functions (for kludge.ui)
     (defscreen my-screen
       :on-ui-keyboard-focus-changed
       (fn [screen entities]
@@ -412,7 +412,7 @@ via the screen map.
         (println (:focused? screen)) ; whether it is focused
         entities))
 
-    ; ui gesture functions (for play-clj.ui)
+    ; ui gesture functions (for kludge.ui)
     (defscreen my-screen
       ; the user dragged a finger over the screen and lifted it
       :on-ui-fling

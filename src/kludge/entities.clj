@@ -1,5 +1,6 @@
 (ns kludge.entities
-  (:require [clj-uuid :as uuid])
+  (:require [clj-uuid :as uuid]
+            [kludge.utils :as u])
   (:import [com.badlogic.gdx Gdx Graphics]
            [com.badlogic.gdx.graphics Camera Color GL20]
            [com.badlogic.gdx.graphics.g2d Batch NinePatch ParticleEffect Sprite
@@ -164,11 +165,16 @@
 ;code for working with entities map
 
 
-(defn entity-uid
-  "Get an uuid suitable for use as the reference to an entity"
-  []
-  (uuid/v1))
+(def +namespace-ent+ (uuid/v1))
 
+
+(defn entity-uid
+  "Get an uuid suitable for use as the reference to an entity.
+  Can pass an argument to easily generate the same UID multiple times,
+  although this is effectively creating global state which is bad form"
+  ([]
+    (uuid/v1))
+  ([object] (uuid/v3 +namespace-ent+ object)))
 (defn assoc-entity [entities entity key val]
   (assoc-in entities [entity key] val))
 
@@ -181,6 +187,47 @@
 (defn create-entity
   "Creates a new entity. Note that the uid is not returned"
   ([entities uid record]
-             (assoc entities uid record))
+    (assoc entities uid record))
   ([entities record]
-             (create-entity entities (entity-uid) record)))
+    (create-entity entities (entity-uid) record)))
+
+(defn create-entities [entities records]
+  (reduce create-entity entities records))
+
+(comment
+  "Component system probably shouldn't be in this namespace (maybe not entity record stuff either).
+   Commented out for now"
+(defn add-component-manager! [screen]
+  (update! screen :component-manager {})) ;Should map component->uid set
+
+(defn assoc-component
+  "Like assoc-entity, but adds a record of entity having value"
+  [screen entities uid key value]
+    (flag-entity-component screen uid key)
+    (assoc-entity entities uid key value))
+
+(defn flag-entity-component [screen uid key]
+  (update! screen :component-manager (update (:component-manager screen) key (fnil conj #{}) uid)))
+
+(defn ents-with-component [screen key]
+  (or (get-in screen [:component-manager key]) #{}))
+
+(defn ents-with-components
+  "Returns set of uids of entities with all components."
+  [screen keys]
+  (or (apply clojure.set/intersection (map (partial ents-with-component screen) keys)) #{}))
+
+(defn update-with-components
+  "Updates only those entities with certain registered components. Fun should be record->record"
+  [screen entities keys fun]
+  (reduce (fn [ent-map uid] (update ent-map uid fun)) entities (ents-with-components [screen keys])))
+
+;Should try to eliminate redundancy between argslist and keys?
+(defmacro with-components
+  "Macro version of update-with-components. Just cleans away the (fun [...) bits.
+  (with-components screen entities [:physics :explosive :homing]
+                   [{:keys physics explosive homing :as entity}]
+                   (if (check-stuff explosive physics ...)))"
+  [screen entities keys arglist & forms]
+  `(update-with-components ~screen ~entities ~keys (fn ~arglist ~@forms)))
+)

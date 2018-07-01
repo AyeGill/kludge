@@ -1,5 +1,5 @@
 (defproject kludge "0.0.1-SNAPSHOT"
-  :description "A libGDX wrapper for easy cross-platform game development"
+  :description "A libGDX wrapper for easy cross-platform game development. Forked from play-clj."
   :url "https://github.com/AyeGill/kludge"
   :license {:name "Public Domain"
             :url "http://unlicense.org/UNLICENSE"}
